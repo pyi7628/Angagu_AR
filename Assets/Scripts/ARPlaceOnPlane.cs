@@ -21,17 +21,27 @@ public class ARPlaceOnPlane : MonoBehaviour
 
     private bool isPlace = false;
 
+    private float originScale = 0.0f;
+
 
     GameObject spawnObject;
+    
     // Start is called before the first frame update
     void Start()
     {
+      
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         // updateCenterObject();
+        if (!placeObject)
+        {
+            Debug.Log("!!!");
+            placeObject = GameObject.FindWithTag("Model");
+        }
         if (!isPlace)placeObjectByTouch();
         rotateObject();
         resizeObjectByTouch();
@@ -88,7 +98,7 @@ public class ARPlaceOnPlane : MonoBehaviour
     {
         if (Input.touchCount == 2)
         {
-             float originScale = GameObject.FindWithTag("OriginModel").transform.localScale.x;
+             if(originScale==0.0f) originScale = GameObject.FindWithTag("OriginModel").transform.localScale.x;
             // Get Touch points.
             Touch touchZero = Input.GetTouch(0);
             Touch touchOne = Input.GetTouch(1);
@@ -107,7 +117,7 @@ public class ARPlaceOnPlane : MonoBehaviour
             // Get prev object scale.
             Vector3 prevScale = placeObject.transform.localScale;
 
-            float rate = (prevScale.x) * 1000f;
+            float rate = (prevScale.x) * 10f;
             // Calculate pinch amount with max, min.
             float pinchAmount = Mathf.Clamp(prevScale.x + deltaMagnitudeDiff * (-Time.deltaTime), originScale/2, originScale);
             deltaDiff.text = rate.ToString();

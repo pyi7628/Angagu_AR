@@ -5,8 +5,7 @@ using UnityEngine;
 public class SumMeshRenderer : MonoBehaviour
 {
     public Bounds bounds;
-    public GameObject originModel;
-
+    
     void OnDrawGizmosSelected()
     {
         Bounds totalBounds = new Bounds();
@@ -33,6 +32,8 @@ public class SumMeshRenderer : MonoBehaviour
         float resizeRate =  realSize.x / boundSize.x;
         transform.localScale = new Vector3(resizeRate, resizeRate, resizeRate);
 
+        /**** set origin model ****/
+        GameObject originModel = GameObject.FindWithTag("OriginModel");
         originModel.transform.localScale = new Vector3(resizeRate, resizeRate, resizeRate);
         // transform.localScale = new Vector3(1 / (boundSize.x*2), 1 / (boundSize.x * 2), 1 / (boundSize.x * 2));
     }
@@ -40,6 +41,10 @@ public class SumMeshRenderer : MonoBehaviour
     {
         // M단위 실제 사이즈 param
         resizing(new Vector3(0.5f, 0.5f, 0.7f));
+
+       
+       
+
     }
 
     void Update()

@@ -52,6 +52,7 @@ public class ModelImporter : MonoBehaviour
             Debug.Log(write_path);
             Debug.Log(results);
             Object spawnedPrefab;
+            
             spawnedPrefab = Instantiate(obj, new Vector3(0.0f,0.0f,0.0f), new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
 
         }
